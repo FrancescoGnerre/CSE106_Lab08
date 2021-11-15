@@ -25,8 +25,9 @@ class Users(db.Model):
     acct_type = db.Column(db.Integer, nullable = False) # 0 - Student, 1 - Teacher, 2 - Admin
     enrollment = db.relationship("Classes", secondary = enrollment, backref = db.backref("enroll", lazy = "dynamic"))
 
-    def __init__(self, username, password, acct_type):
+    def __init__(self, username, name, password, acct_type):
         self.username = username
+        self.name = name
         self.password = password
         self.acct_type = acct_type
 
