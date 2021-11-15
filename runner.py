@@ -22,7 +22,7 @@ class Users(db.Model):
     username = db.Column(db.String, nullable = False)
     password = db.Column(db.String, nullable = False)
     acct_type = db.Column(db.Integer, nullable = False) # 0 - Student, 1 - Teacher, 2 - Admin
-    enrollment = db.Relationship("Classes", secondary = enrollment, backref = "enrolled", lazy = "dynamic")
+    enrollment = db.relationship("Classes", secondary = enrollment, backref = "enrolled", lazy = "dynamic")
 
     def __init__(self, username, password, acct_type):
         self.username = username
@@ -59,19 +59,19 @@ def admin():
     return 0
 
 @app.route('/admin/C', methods =['GET', 'POST'])
-def admin():
+def admin_create():
     return 0
 
 @app.route('/admin/R', methods =['GET'])
-def admin():
+def admin_read():
     return 0
 
 @app.route('/admin/U', methods =['GET', 'PUT'])
-def admin():
+def admin_update():
     return 0
 
 @app.route('/admin/D', methods =['DELETE'])
-def admin():
+def admin_delete():
     return 0
 
 # Student
