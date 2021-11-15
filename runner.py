@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from flask_admin import Admin
-from flask_login import login_required, logout_user, login_user, current_user
+from flask_login import Login, login_required, logout_user, login_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -9,12 +9,20 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 db = SQLAlchemy(app)
 
+# Many to many relationship table with Users and Classes
+enrollment = db.Table('enrollment',
+            db.Column("user_id", db.Integer, db.ForeignKey("users.user_id")),
+            db.Column("class_id", db.Integer, db.ForeignKey("classes.class_id")),
+            db.Column("grade", db.Integer) # This line may need fixing...
+            )
+
 # User table
 class Users(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String, nullable = False)
     password = db.Column(db.String, nullable = False)
     acct_type = db.Column(db.Integer, nullable = False) # 0 - Student, 1 - Teacher, 2 - Admin
+    enrollment = db.Relationship("Classes", secondary = enrollment, backref = db.backref("enrolled", lazy = "dynamic"))
 
     def __init__(self, username, password, acct_type):
         self.username = username
@@ -23,8 +31,8 @@ class Users(db.Model):
 
 # Classes Table
 class Classes(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String, nullable = False)
+    class_id = db.Column(db.Integer, primary_key = True)
+    class_name = db.Column(db.String, nullable = False)
     teacher = db.Column(db.String, nullable = False)
     time = db.Column(db.String, nullable = False)
     enrolled = db.Column(db.Integer, nullable = False)
@@ -37,7 +45,7 @@ class Classes(db.Model):
         self.enrolled = enrolled
         self.capacity = capacity
 
-# login
+# Login
 @app.route("/")
 def login():
     return render_template('login.html')
