@@ -20,9 +20,10 @@ enrollment = db.Table('enrollment',
 class Users(db.Model):
     user_id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String, nullable = False)
+    name = db.Column(db.String, nullable = False)
     password = db.Column(db.String, nullable = False)
     acct_type = db.Column(db.Integer, nullable = False) # 0 - Student, 1 - Teacher, 2 - Admin
-    enrollment = db.relationship("Classes", secondary = enrollment, backref = "enrolled", lazy = "dynamic")
+    enrollment = db.relationship("Classes", secondary = enrollment, backref = db.backref("enroll", lazy = "dynamic"))
 
     def __init__(self, username, password, acct_type):
         self.username = username
