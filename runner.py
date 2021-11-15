@@ -51,7 +51,7 @@ def login():
     return render_template('login.html')
 
 # Admin
-@app.route('/admin', methods =['GET'])
+@app.route('/admin')
 def admin():
     return 0
 
