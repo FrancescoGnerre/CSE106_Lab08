@@ -40,7 +40,6 @@ def student_edit():
 
 @app.route("/teacher/view")
 def teacher_view():
-
     return render_template('teacher-view-classes.html')
 
 @app.route("/teacher/view/<class_name>")
