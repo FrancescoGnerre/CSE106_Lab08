@@ -34,18 +34,33 @@ class Classes(db.Model):
         self.enrolled = enrolled
         self.capacity = capacity
 
-@app.route('/hello/<name>') 
-def hello_name(name):
-    return 'Hello %s!' % name 
-
+# login
 @app.route("/")
 def login():
     return render_template('login.html')
 
+# Admin
 @app.route('/admin', methods =['GET'])
 def admin():
-    return render_template('admin.html')
+    return 0
 
+@app.route('/admin/C', methods =['GET', 'POST'])
+def admin():
+    return 0
+
+@app.route('/admin/R', methods =['GET'])
+def admin():
+    return 0
+
+@app.route('/admin/U', methods =['GET', 'PUT'])
+def admin():
+    return 0
+
+@app.route('/admin/D', methods =['DELETE'])
+def admin():
+    return 0
+
+# Student
 @app.route("/student/view")
 def student_view():
     return render_template('student-view-classes.html')
@@ -54,6 +69,7 @@ def student_view():
 def student_edit():
     return render_template('student-edit-classes.html')
 
+# Teacher
 @app.route("/teacher/view")
 def teacher_view():
     return render_template('teacher-view-classes.html')
@@ -62,5 +78,6 @@ def teacher_view():
 def teacher_edit(class_name):
     return render_template('teacher-view-class-details.html')
 
+# run
 if __name__ == "__main__":
     app.run(debug=True)
