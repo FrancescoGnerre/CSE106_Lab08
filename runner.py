@@ -29,6 +29,9 @@ class Users(db.Model):
         self.password = password
         self.acct_type = acct_type
 
+    def check_password(self, password):
+        return self.password == password
+
 # Classes Table
 class Classes(db.Model):
     class_id = db.Column(db.Integer, primary_key = True)
