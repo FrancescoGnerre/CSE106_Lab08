@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    line-height: normal;
+}
+
+.login {
+    width: 100%;
+    height: 300vh;
+    background-position: center;
+    align-items: center;
+    text-align: center;
+    background-color:deepskyblue;
+}
+
+.login label {
+    color:darkblue;
+}
