@@ -18,6 +18,22 @@ class Users(db.Model):
         self.password = password
         self.acct_type = acct_type
 
+# Classes Table
+class Classes(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String, nullable = False)
+    teacher = db.Column(db.String, nullable = False)
+    time = db.Column(db.String, nullable = False)
+    enrolled = db.Column(db.Integer, nullable = False)
+    capacity = db.Column(db.Integer, nullable = False)
+
+    def __init__(self, name, teacher, time, enrolled, capacity):
+        self.name = name
+        self.teacher = teacher
+        self.time = time
+        self.enrolled = enrolled
+        self.capacity = capacity
+
 @app.route('/hello/<name>') 
 def hello_name(name):
     return 'Hello %s!' % name 
