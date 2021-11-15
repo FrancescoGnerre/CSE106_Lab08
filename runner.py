@@ -13,7 +13,7 @@ db = SQLAlchemy(app)
 enrollment = db.Table('enrollment',
             db.Column("user_id", db.Integer, db.ForeignKey("users.user_id")),
             db.Column("class_id", db.Integer, db.ForeignKey("classes.class_id")),
-            db.Column("grade", db.Integer) # This line may need fixing...
+            db.Column("grade", db.Integer, default = 0) # This line may need fixing...
             )
 
 # User table
@@ -22,7 +22,7 @@ class Users(db.Model):
     username = db.Column(db.String, nullable = False)
     password = db.Column(db.String, nullable = False)
     acct_type = db.Column(db.Integer, nullable = False) # 0 - Student, 1 - Teacher, 2 - Admin
-    enrollment = db.Relationship("Classes", secondary = enrollment, backref = db.backref("enrolled", lazy = "dynamic"))
+    enrollment = db.Relationship("Classes", secondary = enrollment, backref = "enrolled", lazy = "dynamic")
 
     def __init__(self, username, password, acct_type):
         self.username = username
