@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from flask_admin import Admin
-from flask_login import Login, login_required, logout_user, login_user, current_user
+from flask_login import login_required, logout_user, login_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
