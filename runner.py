@@ -6,6 +6,18 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///class-enrollment.sqlite"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
+# User table
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String, nullable = False)
+    password = db.Column(db.String, nullable = False)
+    acct_type = db.Column(db.Integer, nullable = False) # 0 - Student, 1 - Teacher, 2 - Admin
+
+    def __init__(self, username, password, acct_type):
+        self.username = username
+        self.password = password
+        self.acct_type = acct_type
+
 @app.route('/hello/<name>') 
 def hello_name(name):
     return 'Hello %s!' % name 
