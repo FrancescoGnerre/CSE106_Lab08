@@ -40,3 +40,9 @@ function loginFunc(){
     else if (curr_password === home_password)
         consolePrint("MATCH");
 }
+
+function logoutFunc(){
+    curr_name = "";
+    curr_password = "";
+    home_password = "";
+}
