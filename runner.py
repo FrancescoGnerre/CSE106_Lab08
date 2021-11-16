@@ -5,6 +5,7 @@ from flask_login import login_required, logout_user, login_user, current_user, L
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+# text to commit
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///class-enrollment.sqlite"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
