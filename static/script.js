@@ -19,30 +19,22 @@ function consolePrint(x){
 	console.log(x);
 }
 
-function loginFunc(){
-    setName();
-    setPassword();
-    getPassword("TEST");
-
-    consolePrint(curr_password)
-    consolePrint(home_password)
-    consolePrint(curr_name)
-    // no username or password detected
-    if (curr_name === "" || curr_password === "")
-        consolePrint("PLEASE ENTER USERNAME AND PASSWORD");
-    // username DNE
-    else if (curr_name === "DNE")
-        consolePrint("DNE");
-    // username exists, password is wrong
-    else if (curr_password != home_password)
-        consolePrint("BAD PASSWORD");
-    // there is a match
-    else if (curr_password === home_password)
-        consolePrint("MATCH");
-}
-
-function logoutFunc(){
-    curr_name = "";
-    curr_password = "";
-    home_password = "";
-}
+// When login button is clicked...
+$("#loginbutton").on("click", function(){
+    let username = $("#user_name").val();
+    let password = $("#password").val()
+    if (username !== "" && password !== "") {
+        $.ajax({
+            url: "http://127.0.0.1:5000/",
+            type: "POST",
+            data: JSON.stringify({"username" : username, "password" : password}),
+            contentType: "application/JSON",
+            success: function(response){
+                window.location.href = "http://127.0.0.1:5000/" + response
+            }, 
+            error: function(status, error){
+                alert(error)
+            }
+        });
+    }
+});
