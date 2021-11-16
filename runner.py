@@ -1,4 +1,5 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
+from flask.helpers import url_for
 from flask_admin import Admin
 from flask_login import login_required, logout_user, login_user, current_user
 from flask_sqlalchemy import SQLAlchemy
@@ -60,6 +61,12 @@ class Courses(db.Model):
 @app.route("/")
 def login():
     return render_template('login.html')
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("login"))
 
 # Admin
 @app.route('/admin')
