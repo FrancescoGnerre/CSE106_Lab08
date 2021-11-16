@@ -1,14 +1,22 @@
 from flask import Flask, request, render_template, redirect
 from flask.helpers import url_for
 from flask_admin import Admin
-from flask_login import login_required, logout_user, login_user, current_user
+from flask_login import login_required, logout_user, login_user, current_user, LoginManager, UserMixin
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///class-enrollment.sqlite"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
+login_manager = LoginManager() 
+login_manager.init_app(app) 
+login_manager.login_view = 'login'
+app.secret_key = 'keep it secret, keep it safe'
 db = SQLAlchemy(app)
+
+@login_manager.user_loader 
+def load_user(user_id): 
+    return Users.query.filter_by(user_id = user_id).first()
 
 # Many to many relationship table with Users and Classes
 class Enrollment(db.Model):
@@ -23,7 +31,7 @@ class Enrollment(db.Model):
         self.grade = grade
 
 # User table
-class Users(db.Model):
+class Users(UserMixin, db.Model):
     __tablename__ = "Users"
     user_id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String, nullable = False)
@@ -39,6 +47,9 @@ class Users(db.Model):
 
     def check_password(self, password):
         return self.password == password
+
+    def get_id(self):
+        return self.user_id
 
 # Classes Table
 class Courses(db.Model):
@@ -58,9 +69,22 @@ class Courses(db.Model):
         self.capacity = capacity
 
 # Login
-@app.route("/")
+@app.route("/", methods = ["GET", "POST"])
 def login():
-    return render_template('login.html')
+    if request.method == "POST":
+        data = request.get_json()
+        user = Users.query.filter_by(username=data['username']).first() 
+        if user is None or not user.check_password(data['password']): 
+            return redirect(url_for('login')) 
+        login_user(user)
+        if user.acct_type == 0:
+            return url_for('student_view')[1:]
+        elif user.acct_type == 1:
+            return url_for('teacher_view')[1:]
+        else:
+            return url_for('admin')[1:]
+    else:   
+        return render_template('login.html')
 
 @app.route("/logout")
 @login_required
@@ -95,7 +119,7 @@ def admin_delete():
     return 0
 
 # Student
-@app.route("/student/view")
+@app.route("/student")
 @login_required
 def student_view():
     return render_template('student-view-classes.html')
