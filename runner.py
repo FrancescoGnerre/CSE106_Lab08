@@ -10,20 +10,25 @@ app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 db = SQLAlchemy(app)
 
 # Many to many relationship table with Users and Classes
-enrollment = db.Table('enrollment',
-            db.Column("user_id", db.Integer, db.ForeignKey("users.user_id")),
-            db.Column("class_id", db.Integer, db.ForeignKey("classes.class_id")),
-            db.Column("grade", db.Integer, default = 0) # This line may need fixing...
-            )
+class Enrollment(db.Model):
+    __tablename__ = "Enrollment"
+    users_id = db.Column(db.ForeignKey("Users.user_id"), primary_key = True)
+    classes_id = db.Column(db.ForeignKey("Courses.class_id"), primary_key = True)
+    grade = db.Column(db.Integer, nullable = False)
+
+    def __init__(self, user_id, classes_id, grade):
+        self.users_id = user_id
+        self.classes_id = classes_id
+        self.grade = grade
 
 # User table
 class Users(db.Model):
+    __tablename__ = "Users"
     user_id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String, nullable = False)
     name = db.Column(db.String, nullable = False)
     password = db.Column(db.String, nullable = False)
     acct_type = db.Column(db.Integer, nullable = False) # 0 - Student, 1 - Teacher, 2 - Admin
-    enrollment = db.relationship("Classes", secondary = enrollment, backref = db.backref("enroll", lazy = "dynamic"))
 
     def __init__(self, username, name, password, acct_type):
         self.username = username
@@ -35,7 +40,8 @@ class Users(db.Model):
         return self.password == password
 
 # Classes Table
-class Classes(db.Model):
+class Courses(db.Model):
+    __tablename__ = "Courses"
     class_id = db.Column(db.Integer, primary_key = True)
     class_name = db.Column(db.String, nullable = False)
     teacher = db.Column(db.String, nullable = False)
@@ -94,6 +100,7 @@ def teacher_view():
 def teacher_edit(class_name):
     return render_template('teacher-view-class-details.html')
 
-# run
+# Run
 if __name__ == "__main__":
+    # db.create_all() # Only need this line if db not created
     app.run(debug=True)
