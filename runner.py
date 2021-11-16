@@ -43,8 +43,8 @@ class Classes(db.Model):
     enrolled = db.Column(db.Integer, nullable = False)
     capacity = db.Column(db.Integer, nullable = False)
 
-    def __init__(self, name, teacher, time, enrolled, capacity):
-        self.name = name
+    def __init__(self, class_name, teacher, time, enrolled, capacity):
+        self.class_name = class_name
         self.teacher = teacher
         self.time = time
         self.enrolled = enrolled
