@@ -5,6 +5,10 @@
     line-height: normal;
 }
 
+.center {
+    text-align: center;
+}
+
 .login {
     width: 100%;
     height: 300vh;
