@@ -8,6 +8,27 @@
     </head>
     <body>
         <h1 class = "center">Student Page</h1>
+        <table id = "studentcourses">
+            <thead>
+                <tr>
+                    <th>Couse Name</th>
+                    <th>Teacher</th>
+                    <th>Time</th>
+                    <th>Enrolled</th>
+                    <th>Capacity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td>{{course.class_name}}</td>
+                    <td>{{course.teacher}}</td>
+                    <td>{{course.time}}</td>
+                    <td>{{course.enrolled}}</td>
+                    <td>{{course.capacity}}</td>
+                </tr>
+                {% endfor %}</tbody>
+        </table>
         <button type="button" class = "logout" id = "logoutStudentView">Log Out</button>
         <script src="static/script.js"></script>
     </body>

@@ -53,8 +53,8 @@ $("#logoutAdmin").on("click", function(){
     });
 });
 
-// When logout button on Student Edit classes is clicked...
-$("#logoutStudentEdit").on("click", function(){
+// When logout button on Student View classes is clicked...
+$("#logoutStudentView").on("click", function(){
     $.ajax({
         url: "http://127.0.0.1:5000/logout",
         type: "GET",
@@ -67,8 +67,8 @@ $("#logoutStudentEdit").on("click", function(){
     });
 });
 
-// When logout button on Student View classes is clicked...
-$("#logoutStudentView").on("click", function(){
+// When logout button on Student Edit classes is clicked...
+$("#logoutStudentEdit").on("click", function(){
     $.ajax({
         url: "http://127.0.0.1:5000/logout",
         type: "GET",

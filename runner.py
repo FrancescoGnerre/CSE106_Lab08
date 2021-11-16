@@ -123,7 +123,12 @@ def admin_delete():
 @app.route("/student")
 @login_required
 def student_view():
-    return render_template('student-view-classes.html')
+    listCourses = []
+    enrolled_classes = Enrollment.query.filter_by(users_id = current_user.user_id)
+    for course in enrolled_classes:
+        listCourses.append(course.classes_id)
+    classes = Courses.query.filter(Courses.class_id.in_(listCourses))
+    return render_template('student-view-classes.html', courses = classes)
 
 @app.route("/student/edit")
 @login_required
