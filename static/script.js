@@ -38,3 +38,74 @@ $("#loginbutton").on("click", function(){
         });
     }
 });
+
+// When logout button on Admin is clicked...
+$("#logoutAdmin").on("click", function(){
+    $.ajax({
+        url: "http://127.0.0.1:5000/logout",
+        type: "GET",
+        success: function(response){
+            window.location.href = "http://127.0.0.1:5000/" + response
+        }, 
+        error: function(status, error){
+            alert(error)
+        }
+    });
+});
+
+// When logout button on Student Edit classes is clicked...
+$("#logoutStudentEdit").on("click", function(){
+    $.ajax({
+        url: "http://127.0.0.1:5000/logout",
+        type: "GET",
+        success: function(response){
+            window.location.href = "http://127.0.0.1:5000/" + response
+        }, 
+        error: function(status, error){
+            alert(error)
+        }
+    });
+});
+
+// When logout button on Student View classes is clicked...
+$("#logoutStudentView").on("click", function(){
+    $.ajax({
+        url: "http://127.0.0.1:5000/logout",
+        type: "GET",
+        success: function(response){
+            window.location.href = "http://127.0.0.1:5000/" + response
+        }, 
+        error: function(status, error){
+            alert(error)
+        }
+    });
+});
+
+// When logout button on Teacher Details is clicked...
+$("#logoutTeacherDetails").on("click", function(){
+    $.ajax({
+        url: "http://127.0.0.1:5000/logout",
+        type: "GET",
+        success: function(response){
+            window.location.href = "http://127.0.0.1:5000/" + response
+        }, 
+        error: function(status, error){
+            alert(error)
+        }
+    });
+});
+
+// When logout button on Teacher View is clicked...
+$("#logoutTeacherView").on("click", function(){
+    $.ajax({
+        url: "http://127.0.0.1:5000/logout",
+        type: "GET",
+        success: function(response){
+            window.location.href = "http://127.0.0.1:5000/" + response
+        }, 
+        error: function(status, error){
+            alert(error)
+        }
+    });
+});
+

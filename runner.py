@@ -91,7 +91,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("login"))
+    return url_for('login')[1:]
 
 # Admin
 @app.route('/admin')
@@ -131,7 +131,7 @@ def student_edit():
     return render_template('student-edit-classes.html')
 
 # Teacher
-@app.route("/teacher/view")
+@app.route("/teacher")
 @login_required
 def teacher_view():
     return render_template('teacher-view-classes.html')
