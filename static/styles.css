@@ -17,3 +17,9 @@
 .login label {
     color:darkblue;
 }
+
+.admin {
+    background-position: center;
+    align-items: center;
+    text-align: center;
+}
