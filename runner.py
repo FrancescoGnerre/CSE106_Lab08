@@ -63,40 +63,49 @@ def login():
 
 # Admin
 @app.route('/admin')
+@login_required
 def admin():
     return render_template('admin.html')
 
 @app.route('/admin/C', methods =['GET', 'POST'])
+@login_required
 def admin_create():
     return 0
 
 @app.route('/admin/R', methods =['GET'])
+@login_required
 def admin_read():
     return 0
 
 @app.route('/admin/U', methods =['GET', 'PUT'])
+@login_required
 def admin_update():
     return 0
 
 @app.route('/admin/D', methods =['DELETE'])
+@login_required
 def admin_delete():
     return 0
 
 # Student
 @app.route("/student/view")
+@login_required
 def student_view():
     return render_template('student-view-classes.html')
 
 @app.route("/student/edit")
+@login_required
 def student_edit():
     return render_template('student-edit-classes.html')
 
 # Teacher
 @app.route("/teacher/view")
+@login_required
 def teacher_view():
     return render_template('teacher-view-classes.html')
 
 @app.route("/teacher/view/<class_name>")
+@login_required
 def teacher_edit(class_name):
     return render_template('teacher-view-class-details.html')
 
