@@ -159,7 +159,7 @@ def student_view():
 @app.route("/student/courses")
 @login_required
 def student_edit():
-    return render_template('student-edit-classes.html', courses = Courses.query.all())
+    return render_template('student-edit-classes.html', courses = Courses.query.all(), enrollment = Enrollment.query.filter_by(users_id = current_user.user_id))
 
 # Teacher
 @app.route("/teacher")
