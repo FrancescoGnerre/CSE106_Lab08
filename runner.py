@@ -100,10 +100,35 @@ def logout():
     return url_for('login')[1:]
 
 # Admin
-@app.route('/admin')
+@app.route('/admin', methods = ["GET", "POST"])
 @login_required
 def admin():
-    return render_template('admin.html')
+    if request.method == "POST":
+        data = request.get_json()
+        if data["post"] == "user":
+            user = Users.query.filter_by(username = data["username"]).first()
+            if user is None:
+                user = Users(data["username"], data["name"], data["password"], int(data["acct_type"]))
+                db.session.add(user)
+                db.session.commit()
+                return "success"
+        elif data["post"] == "class":
+            course = Courses.query.filter_by(class_name = data["classname"]).first()
+            if course is None:
+                course = Courses(data["classname"], data["teacher"], data["time"], int(data["enrollment"]), int(data["capacity"]))
+                db.session.add(course)
+                db.session.commit()
+                return "success"
+        else:
+            user = Users.query.filter_by(username = data["username"]).first()
+            course = Courses.query.filter_by(class_name = data["classname"]).first()
+            if user is not None and course is not None and user.acct_type == 0:
+                enroll = Enrollment(user.user_id, course.class_id, int(data["grade"]))
+                db.session.add(enroll)
+                db.session.commit()
+                return "success"
+    else: 
+        return render_template('admin.html')
 
 @app.route('/admin/C', methods =['GET', 'POST'])
 @login_required

@@ -12,36 +12,36 @@
         <h1>Create New User</h1>
         <form>
             <label for="user_name">Username:</label><br>
-            <input type="text" id="user_name" name="user_name" placeholder="Username"><br>
+            <input type="text" id="add_username" name="user_name" placeholder="Username"><br>
 
             <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" placeholder="Name"><br>
+            <input type="text" id="add_name" name="name" placeholder="Name"><br>
 
             <label for="password">Password:</label><br>
-            <input type="text" id="password" name="password" placeholder="Password"><br>
+            <input type="text" id="add_password" name="password" placeholder="Password"><br>
 
             <label for="acct_type">Account Type:</label><br>
             <p>0-Student 1-Teacher 2-Admin</p>
-            <input type="text" id="acct_type" name="acct_type" placeholder="Account Type"><br>
+            <input type="number" id="add_acct_type" name="acct_type" placeholder="Account Type"><br>
         </form>
         <button type="button" id = "admin_newuser">Upload New User</button><br>
         <hr>
         <h1>Create New Class</h1>
         <form>
             <label for="class_name">Class:</label><br>
-            <input type="text" id="class_name" name="class_name" placeholder="Class name"><br>
+            <input type="text" id="add_class_name" name="class_name" placeholder="Class name"><br>
 
             <label for="time">Time:</label><br>
-            <input type="text" id="time" name="time" placeholder="Time"><br>
+            <input type="text" id="add_time" name="time" placeholder="Time"><br>
 
             <label for="capacity">Capacity:</label><br>
-            <input type="capacity" id="capacity" name="capacity" placeholder="Capactiy"><br>
+            <input type="number" id="add_capacity" name="capacity" placeholder="Capactiy"><br>
 
             <label for="current_enrollment">Currently Enrolled:</label><br>
-            <input type="current_enrollment" id="current_enrollment" name="current_enrollment" placeholder="Current Enrollment"><br>
+            <input type="number" id="add_current_enrollment" name="current_enrollment" placeholder="Current Enrollment"><br>
 
             <label for="teacher">Teacher:</label><br>
-            <input type="teacher" id="teacher" name="teacher" placeholder="Teacher"><br>
+            <input type="teacher" id="add_teacher" name="teacher" placeholder="Teacher"><br>
         </form>
         <button type="button" id = "admin_newclass">Upload New Class</button><br>
         <hr>
@@ -52,6 +52,9 @@
 
             <label for="enroll_classname">Class:</label><br>
             <input type="text" id="enroll_classname" name="enroll_classname" placeholder="Class"><br>
+
+            <label for="enroll_grade">Grade:</label><br>
+            <input type="number" id="enroll_grade" name="enroll_grade" placeholder="Grade"><br>
         </form>
         <button type="button" id = "admin_enroll">Enroll Student in Class</button><br>
         <hr>

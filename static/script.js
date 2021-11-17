@@ -138,3 +138,68 @@ $("#logoutTeacherView").on("click", function(){
     });
 });
 
+// When Admin uploads new user
+$("#admin_newuser").on("click", function(){
+    let username = $("#add_username").val();
+    let name = $("#add_name").val();
+    let password = $("#add_password").val();
+    let acct_type = $("#add_acct_type").val()
+    if (username !== "" && name !== "" && password !== "" && acct_type !== ""){
+        $.ajax({
+            url: "http://127.0.0.1:5000/admin",
+            type: "POST",
+            data: JSON.stringify({"username" : username, "name" : name, "password" : password, "acct_type" : acct_type, "post" : "user"}),
+            contentType: "application/JSON",
+            success: function(response){
+                alert("Successfully Added User!")
+            },
+            error: function(status, error){
+                alert(error)
+            }
+        });
+    }
+});
+
+// When Admin uploads new class
+$("#admin_newclass").on("click", function(){
+    let classname = $("#add_class_name").val();
+    let time = $("#add_time").val();
+    let capacity = $("#add_capacity").val();
+    let enrollment = $("#add_current_enrollment").val();
+    let teacher = $("#add_teacher").val();
+    if (classname !== "" && time !== "" && capacity !== "" && enrollment !== "" && teacher !== ""){
+        $.ajax({
+            url: "http://127.0.0.1:5000/admin",
+            type: "POST",
+            data: JSON.stringify({"classname" : classname, "time" : time, "capacity" : capacity, "enrollment" : enrollment, "teacher" : teacher, "post" : "class"}),
+            contentType: "application/JSON",
+            success: function(response){
+                alert("Successfully Added Class!")
+            },
+            error: function(status, error){
+                alert(error)
+            }
+        });
+    }
+});
+
+// When Admin enrolls student in class
+$("#admin_enroll").on("click", function(){
+    let classname = $("#enroll_classname").val();
+    let username = $("#enroll_user_name").val()
+    let grade = $("#enroll_grade").val()
+    if (classname !== "" && username !== "" && grade !== ""){
+        $.ajax({
+            url: "http://127.0.0.1:5000/admin",
+            type: "POST",
+            data: JSON.stringify({"classname" : classname, "username" : username, "grade" : grade, "post" : "enroll"}),
+            contentType: "application/JSON",
+            success: function(response){
+                alert("Successfully Enrolled User in Class!")
+            },
+            error: function(status, error){
+                alert(error)
+            }
+        });
+    }
+});
