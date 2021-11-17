@@ -100,10 +100,35 @@ def logout():
     return url_for('login')[1:]
 
 # Admin
-@app.route('/admin')
+@app.route('/admin', methods = ["GET", "POST"])
 @login_required
 def admin():
-    return render_template('admin.html')
+    if request.method == "POST":
+        data = request.get_json()
+        if data["post"] == "user":
+            user = Users.query.filter_by(username = data["username"]).first()
+            if user is None:
+                user = Users(data["username"], data["name"], data["password"], int(data["acct_type"]))
+                db.session.add(user)
+                db.session.commit()
+                return "success"
+        elif data["post"] == "class":
+            course = Courses.query.filter_by(class_name = data["classname"]).first()
+            if course is None:
+                course = Courses(data["classname"], data["teacher"], data["time"], int(data["enrollment"]), int(data["capacity"]))
+                db.session.add(course)
+                db.session.commit()
+                return "success"
+        else:
+            user = Users.query.filter_by(username = data["username"]).first()
+            course = Courses.query.filter_by(class_name = data["classname"]).first()
+            if user is not None and course is not None and user.acct_type == 0:
+                enroll = Enrollment(user.user_id, course.class_id, int(data["grade"]))
+                db.session.add(enroll)
+                db.session.commit()
+                return "success"
+    else: 
+        return render_template('admin.html')
 
 @app.route('/admin/C', methods =['GET', 'POST'])
 @login_required
@@ -156,11 +181,33 @@ def teacher_view():
     taught_classes = Courses.query.filter_by(teacher = current_user.name)
     return render_template('teacher-view-classes.html', courses = taught_classes)
 
-@app.route("/teacher/<class_name>")
+@app.route("/teacher/<course_name>")
 @login_required
-def teacher_edit(class_name):
+def teacher_edit(course_name):
     # More functionality needs to be added here...
-    return class_name
+    listStudentIds = []
+    listStudentNames = []
+    grades = []
+    # Acquire Course
+    course_details = Courses.query.filter_by(class_name = course_name)
+    # Acquire class id
+    classId = course_details.class_id
+    # Acquire all enrolled in class id
+    listEnrolled = Enrollment.query.filter_by(classes_id = classId)
+    # Acquire grades
+    for user in listEnrolled:
+        grades.append(user.grade)
+    # Acquire Student Ids
+    for enrolled in listEnrolled:
+        listStudentIds.append(enrolled.users_id)
+    # Acquire Student users
+    for student in listStudentIds:
+        enrolled_users =  Users.query.filter_by(user_id = student)
+    # Acquire Student name
+    for names in enrolled_users:
+        listStudentNames.append(names.name)
+
+    return render_template('teacher-view-class-details.html', course_name, listStudentNames, grades)
 
 # Run
 if __name__ == "__main__":
