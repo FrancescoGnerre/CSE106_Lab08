@@ -130,10 +130,18 @@ def student_view():
     classes = Courses.query.filter(Courses.class_id.in_(listCourses))
     return render_template('student-view-classes.html', courses = classes)
 
-@app.route("/student/edit")
+@app.route("/student/courses")
 @login_required
 def student_edit():
-    return render_template('student-edit-classes.html')
+    listCourses = []
+    enrolled_classes = Enrollment.query.filter_by(users_id = current_user.user_id)
+    for course in enrolled_classes:
+        listCourses.append(course.classes_id)
+    maxcapacity = Courses.query.filter(Courses.enrolled == Courses.capacity)
+    for course in maxcapacity:
+        listCourses.append(course.class_id)
+    classes = Courses.query.filter(Courses.class_id.not_in(listCourses))
+    return render_template('student-edit-classes.html', courses = classes)
 
 # Teacher
 @app.route("/teacher")
