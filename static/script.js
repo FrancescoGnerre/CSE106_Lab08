@@ -303,3 +303,23 @@ $("#update_class").on("click", function(){
         }
         });
     });
+
+// When Admin edits a grade
+$("#update_grade_button").on("click", function(){
+    let name = $("#update_grade_name").val()
+    let course = $("#update_grade_classname").val()
+    let grade = $("#update_grade").val()
+    $.ajax({
+        url: "http://127.0.0.1:5000/admin",
+        type: "PUT",
+        data: JSON.stringify({"name" : name, "course" : course, "grade" : grade, "put" : "grade"}),
+        contentType: "application/JSON",
+        success: function(response){
+            alert("Successfully Edited Grade!")
+            window.location.href = "http://127.0.0.1:5000/admin"
+        },
+        error: function(status, error){
+            alert(error)
+        }
+        });
+    });

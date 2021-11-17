@@ -153,6 +153,14 @@ def admin():
                     course.capacity = int(data["new_capacity"])
                 db.session.commit()
                 return "success"
+        else:
+            user = Users.query.filter_by(username = data["name"]).first()
+            course = Courses.query.filter_by(class_name = data["course"]).first()
+            if user is not None and course is not None:
+                enroll = Enrollment.query.filter_by(users_id = user.user_id, classes_id = course.class_id).first()
+                enroll.grade = data["grade"]
+                db.session.commit()
+                return "success"
     all_courses = []
     all_grades = []
     all_users = []
