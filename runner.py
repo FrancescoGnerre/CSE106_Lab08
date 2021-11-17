@@ -194,7 +194,7 @@ def teacher_edit(course_name):
     for names in enrolled_users:
         listStudentNames.append(names.name)
 
-    return render_template('teacher-view-class-details.html', name = course_name, students = listStudentNames, grades = grades)
+    return render_template('teacher-view-class-details.html', name = course_name, students = listStudentIds, grades = grades)
 
 # Run
 if __name__ == "__main__":
