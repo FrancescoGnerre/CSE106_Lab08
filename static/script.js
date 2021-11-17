@@ -214,6 +214,27 @@ $("#admin_enroll").on("click", function(){
     }
 });
 
+// Teacher editing grades
+$("#grade_change").on("click", function(){
+    let grade = $("#edit_grade").val()
+    let student = $("#student_name").val()
+    let course_name = document.getElementById("course_name").innerHTML
+    if (student !== "" && grade !== ""){
+        $.ajax({
+            url: "http://127.0.0.1:5000/teacher/" + course_name,
+            type: "PUT",
+            data: JSON.stringify({"name" : student, "grade" : grade}),
+            contentType: "application/JSON",
+            success: function(response){
+                alert("Successfully Changed Student Grade!")
+                window.location.href = "http://127.0.0.1:5000/teacher/" + course_name
+            },
+            error: function(status, error){
+                alert(error)
+            }
+        });
+    }
+});
 // When Admin edits a user
 $("#update_user").on("click", function(){
     let orig_username = $("#update_original_user").val()
