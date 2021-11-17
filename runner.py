@@ -150,10 +150,11 @@ def teacher_view():
     taught_classes = Courses.query.filter_by(teacher = current_user.name)
     return render_template('teacher-view-classes.html', courses = taught_classes)
 
-@app.route("/teacher/view/<class_name>")
+@app.route("/teacher/<class_name>")
 @login_required
 def teacher_edit(class_name):
-    return render_template('teacher-view-class-details.html')
+    # More functionality needs to be added here...
+    return class_name
 
 # Run
 if __name__ == "__main__":
