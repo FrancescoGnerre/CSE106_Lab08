@@ -11,7 +11,7 @@
         <table id = "studentcourses">
             <thead>
                 <tr>
-                    <th>Couse Name</th>
+                    <th>Course Name</th>
                     <th>Teacher</th>
                     <th>Time</th>
                     <th>Enrolled</th>
@@ -28,7 +28,9 @@
                     <td>{{course.capacity}}</td>
                 </tr>
                 {% endfor %}</tbody>
-        </table>
+        </table><br>
+
+        <button type="button" class = "edit_classes" id = "edit_classes">Edit Classes</button><br>
         <button type="button" class = "logout" id = "logoutStudentView">Log Out</button>
         <script src="../static/script.js"></script>
     </body>

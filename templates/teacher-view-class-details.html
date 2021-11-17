@@ -6,6 +6,25 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
+        <h1 class = "center">Teacher Page</h1>
+        <h2 class = "center">class_name</h2>
+        <table id = "coursedetails">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                using class_id -> enrollment table
+                {% for enrolled in enrollment %}
+                <tr>
+                    for enrolled.classes_id == class id
+                    <td>{{enrolled.users_id}}->name</td>
+                    <td>{{enrolled.grade}}</td>
+                </tr>
+                {% endfor %}</tbody>
+        </table><br>
         <button type="button" class = "logout" id = "logoutTeacherDetails">Log Out</button>
         <script src="../static/script.js"></script>
     </body>
