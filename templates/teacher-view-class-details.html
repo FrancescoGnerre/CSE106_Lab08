@@ -17,9 +17,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for names in students %}
+                    {% for i in range(0, length) %}
                     <tr>
-                        <td>{{names}}</td>
+                        <td>{{students[i]}}</td>
+                        <td>{{grades[i]}}</td>
                     </tr>
                     {% endfor %}</tbody>
             </table><br>
