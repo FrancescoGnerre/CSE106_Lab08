@@ -15,6 +15,13 @@ login_manager.login_view = 'login'
 app.secret_key = 'keep it secret, keep it safe'
 db = SQLAlchemy(app)
 
+@app.after_request
+def after_request(response):
+  response.headers.add('Access-Control-Allow-Origin', '*')
+  response.headers.add("Access-Control-Allow-Methods", "GET,DELETE,POST,PUT")
+  response.headers.add("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers")
+  return response
+
 @login_manager.user_loader 
 def load_user(user_id): 
     return Users.query.filter_by(user_id = user_id).first()
