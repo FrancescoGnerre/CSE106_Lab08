@@ -19,6 +19,35 @@ function consolePrint(x){
 	console.log(x);
 }
 
+// student view add/drop class
+$("#s_edit_classes").on("click", function(){
+	$.ajax({
+		url: "http://127.0.0.1:5000/student",
+		type: "GET",
+		success: function(){
+            window.location.href = "http://127.0.0.1:5000/student/courses"
+        }, 
+        error: function(status, error){
+            alert(error)
+        }
+	})
+});
+
+// student edit back to view
+$("#s_view_classes").on("click", function(){
+	consolePrint("TEST")
+	$.ajax({
+		url: "http://127.0.0.1:5000/student/courses",
+		type: "GET",
+		success: function(){
+            window.location.href = "http://127.0.0.1:5000/student"
+        },  
+        error: function(status, error){
+            alert(error)
+        }
+	})
+});
+
 // When login button is clicked...
 $("#loginbutton").on("click", function(){
     let username = $("#user_name").val();
