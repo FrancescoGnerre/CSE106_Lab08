@@ -32,17 +32,14 @@
 							<td>
 								<a href ="">Drop course</a>
 							</td>
-							<!add link>
+							<!link does nothing>
 						{% elif course.capacity == course.enrolled %}
-							<td>
-								<a href ="">Course is Full</a>
-							</td>
-							<!add link>	
+							<td>Course is Full</td>
 						{% else %}
 							<td>
 								<a href ="">Add Course</a>
 							</td>
-							<!add link>	
+							<!link does nothing>	
 						{% endif %}
                     </tr>
                     {% endfor %}</tbody>
