@@ -29,11 +29,20 @@
                         <td>{{course.enrolled}}</td>
                         <td>{{course.capacity}}</td>
 						{% if course.class_name == "FALSE TEST" %}<!connect join>
-							<td>Drop course</td><!add link>
+							<td>
+								<a href ="">Drop course</a>
+							</td>
+							<!add link>
 						{% elif course.capacity == course.enrolled %}
-							<td>Course is Full</td><!add link>
+							<td>
+								<a href ="">Course is Full</a>
+							</td>
+							<!add link>	
 						{% else %}
-							<td>Add course</td><!add link>
+							<td>
+								<a href ="">Add Course</a>
+							</td>
+							<!add link>	
 						{% endif %}
                     </tr>
                     {% endfor %}</tbody>
