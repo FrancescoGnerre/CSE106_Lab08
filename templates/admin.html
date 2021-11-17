@@ -8,6 +8,73 @@
     <body>
 
     <div class="admin">
+        <h1>Users Data</h1>
+        <table id = "admin_users">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>Account Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.user_id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.acct_type}}</td>
+                </tr>
+                {% endfor %}</tbody>
+        </table><br>
+        <hr>
+        <h1>Courses Data</h1>
+        <table id = "admin_courses">
+            <thead>
+                <tr>
+                    <th>Class ID</th>
+                    <th>Class Name</th>
+                    <th>Teacher</th>
+                    <th>Time</th>
+                    <th>Enrolled</th>
+                    <th>Capacity</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td>{{course.class_id}}</td>
+                    <td>{{course.class_name}}</td>
+                    <td>{{course.teacher}}</td>
+                    <td>{{course.time}}</td>
+                    <td>{{course.enrolled}}</td>
+                    <td>{{course.capacity}}</td>
+                </tr>
+                {% endfor %}</tbody>
+        </table><br>
+        <hr>
+        <h1>Enrollment Data</h1>
+        <table id = "admin_enrollment">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Class Name</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(0, length) %}
+                <tr>
+                    <td>{{enrollUsers[i]}}</td>
+                    <td>{{enrollCourses[i]}}</td>
+                    <td>{{enrollGrades[i]}}</td>
+                </tr>
+                {% endfor %}</tbody>
+        </table><br>
+        <hr>
         <h1>Create New User</h1>
         <form>
             <label for="user_name">Username:</label><br>
