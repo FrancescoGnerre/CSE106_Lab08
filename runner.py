@@ -225,18 +225,18 @@ def student_edit():
     if request.method=="POST":
         data = request.get_json()
         course = Courses.query.filter_by(class_name=data["class_name"]).first()
-        if course is not None:
+        if course is not None and course.enrolled < course.capacity:
             enrollment = Enrollment(current_user.user_id, course.class_id, 0)
             db.session.add(enrollment)
             course.enrolled = course.enrolled+1
             db.session.commit()
             return "success"
-
-    enrollment = Enrollment.query.filter_by(users_id = current_user.user_id)
-    enrolledClasses = []
-    for course in enrollment:
-        enrolledClasses.append(course.classes_id)
-    return render_template('student-edit-classes.html', courses = Courses.query.all(), enrollment = enrolledClasses)
+    if request.method == "GET":
+        enrollment = Enrollment.query.filter_by(users_id = current_user.user_id)
+        enrolledClasses = []
+        for course in enrollment:
+            enrolledClasses.append(course.classes_id)
+        return render_template('student-edit-classes.html', courses = Courses.query.all(), enrollment = enrolledClasses)
 
 
 # Teacher
