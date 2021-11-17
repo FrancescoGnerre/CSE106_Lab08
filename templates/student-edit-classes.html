@@ -5,33 +5,35 @@
         <link href="static/styles.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
-    <body>
-        <h1 class = "center">Add Courses</h1>
-        <table id = "availableCourses">
-            <thead>
-                <tr>
-                    <th>Couse Name</th>
-                    <th>Teacher</th>
-                    <th>Time</th>
-                    <th>Enrolled</th>
-                    <th>Capacity</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for course in courses %}
-                <tr>
-                    <td>{{course.class_name}}</td>
-                    <td>{{course.teacher}}</td>
-                    <td>{{course.time}}</td>
-                    <td>{{course.enrolled}}</td>
-                    <td>{{course.capacity}}</td>
-                    <td>
-                        <button type="button" class="add_class" id="add_class">Add</button>
-                    </td>
-                </tr>
-                {% endfor %}</tbody>
-        </table><br>
-        <button type="button" class = "logout" id = "logoutStudentEdit">Log Out</button>
-        <script src="static/script.js"></script>
-    </body>
+    <div class='student_edit'>
+        <body>
+            <h1 class = "center">Add Courses</h1>
+            <table id = "availableCourses">
+                <thead>
+                    <tr>
+                        <th>Couse Name</th>
+                        <th>Teacher</th>
+                        <th>Time</th>
+                        <th>Enrolled</th>
+                        <th>Capacity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                    <tr>
+                        <td>{{course.class_name}}</td>
+                        <td>{{course.teacher}}</td>
+                        <td>{{course.time}}</td>
+                        <td>{{course.enrolled}}</td>
+                        <td>{{course.capacity}}</td>
+                        <td>
+                            <button type="button" class="add_class" id="add_class">Add</button>
+                        </td>
+                    </tr>
+                    {% endfor %}</tbody>
+            </table><br>
+            <button type="button" class = "logout" id = "logoutStudentEdit">Log Out</button>
+            <script src="static/script.js"></script>
+        </body>
+    </div>
 </html>

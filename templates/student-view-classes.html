@@ -7,31 +7,33 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
-        <h1 class = "center">Student Page</h1>
-        <table id = "studentcourses">
-            <thead>
-                <tr>
-                    <th>Course Name</th>
-                    <th>Teacher</th>
-                    <th>Time</th>
-                    <th>Enrolled</th>
-                    <th>Capacity</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for course in courses %}
-                <tr>
-                    <td>{{course.class_name}}</td>
-                    <td>{{course.teacher}}</td>
-                    <td>{{course.time}}</td>
-                    <td>{{course.enrolled}}</td>
-                    <td>{{course.capacity}}</td>
-                </tr>
-                {% endfor %}</tbody>
-        </table><br>
+        <div class='student_view'>
+            <h1 class = "center">Student Page</h1>
+            <table id = "studentcourses">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Teacher</th>
+                        <th>Time</th>
+                        <th>Enrolled</th>
+                        <th>Capacity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                    <tr>
+                        <td>{{course.class_name}}</td>
+                        <td>{{course.teacher}}</td>
+                        <td>{{course.time}}</td>
+                        <td>{{course.enrolled}}</td>
+                        <td>{{course.capacity}}</td>
+                    </tr>
+                    {% endfor %}</tbody>
+            </table><br>
 
-        <button type="button" class = "edit_classes" id = "edit_classes">Edit Classes</button><br>
-        <button type="button" class = "logout" id = "logoutStudentView">Log Out</button>
-        <script src="static/script.js"></script>
+            <button type="button" class = "edit_classes" id = "edit_classes">Edit Classes</button><br>
+            <button type="button" class = "logout" id = "logoutStudentView">Log Out</button>
+            <script src="static/script.js"></script>
+        </div>
     </body>
 </html>
