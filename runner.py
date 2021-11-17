@@ -161,6 +161,20 @@ def admin():
                 enroll.grade = data["grade"]
                 db.session.commit()
                 return "success"
+
+    elif request.method == "DELETE":
+        data = request.get_json()
+        user = Users.query.filter_by(username = data["name"]).first()
+        if user is not None:
+            enroll = Enrollment.query.filter_by(users_id = user.user_id)
+            for row in enroll:
+                courses = Courses.query.filter_by(class_id = row.classes_id)
+                for course in courses:
+                    course.enrolled = course.enrolled - 1
+                db.session.delete(row)
+            db.session.delete(user)
+            db.session.commit()
+            return "success"
     all_courses = []
     all_grades = []
     all_users = []

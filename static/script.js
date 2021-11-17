@@ -323,3 +323,21 @@ $("#update_grade_button").on("click", function(){
         }
         });
     });
+
+// When Admin deletes a user
+$("#delete_user_button").on("click", function(){
+    let name = $("#delete_user").val()
+    $.ajax({
+        url: "http://127.0.0.1:5000/admin",
+        type: "DELETE",
+        data: JSON.stringify({"name" : name,  "delete" : "user"}),
+        contentType: "application/JSON",
+        success: function(response){
+            alert("Successfully Deleted User!")
+            window.location.href = "http://127.0.0.1:5000/admin"
+        },
+        error: function(status, error){
+            alert(error)
+        }
+        });
+    });
