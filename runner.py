@@ -176,7 +176,7 @@ def teacher_edit(course_name):
     listStudentNames = []
     grades = []
     # Acquire Course
-    course_details = Courses.query.filter_by(class_name = course_name)
+    course_details = Courses.query.filter_by(class_name = course_name).first()
     # Acquire class id
     classId = course_details.class_id
     # Acquire all enrolled in class id
