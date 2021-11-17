@@ -76,6 +76,10 @@ $("#loginbutton").on("click", function(){
             }
         });
     }
+    else{
+        document.getElementById('xyz').play();
+        alert('haha') 
+    }
 });
 
 // When logout button on Admin is clicked...
