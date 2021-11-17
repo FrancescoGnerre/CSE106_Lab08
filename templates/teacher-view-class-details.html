@@ -24,20 +24,26 @@
                     </tr>
                     {% endfor %}</tbody>
             </table><br>
+            
+            <div class="teacher_edit_form">
             <form>
-                <label for="student_name">Student:</label>
-                <input type="text" id="student_name" name="student_name" placeholder="Input Name"><br>
+                    <label for="student_name">Student:</label>
+                    <input type="text" id="student_name" name="student_name" placeholder="Input Name"><br>
 
-                <label for="edit_grade">Grade:</label>
-                <input type="number" id="edit_grade" name="edit_grade" placeholder="Input Grade">
-                <input type="hidden" id="nameOfClass" name="nameOfClass" placeholder={{name}}>
-
+                    <label for="edit_grade">Grade:</label>
+                    <input type="number" id="edit_grade" name="edit_grade" placeholder="Input Grade">
+                    <input type="hidden" id="nameOfClass" name="nameOfClass" placeholder={{name}}>
             </form>
-            <button type="button" id = "grade_change">Submit Changes</button><br>
+            </div>
 
-            <input type="button" onclick="location.href='http://127.0.0.1:5000/teacher'" value="Return" />
-            <button type="button" class = "logout" id = "logoutTeacherDetails">Log Out</button>
-            <script src="../static/script.js"></script>
+            <div class='teacher_buttons'>
+                <button type="button" id = "grade_change">Submit Changes</button><br>
+
+                <input type="button" onclick="location.href='http://127.0.0.1:5000/teacher'" value="Return" />
+                <button type="button" class = "logout" id = "logoutTeacherDetails">Log Out</button>
+                <script src="../static/script.js"></script>
+            </div>
+
         </div>
     </body>
 </html>
