@@ -235,22 +235,24 @@ $("#grade_change").on("click", function(){
         });
     }
 });
+
 // When Admin edits a user
 $("#update_user").on("click", function(){
     let orig_username = $("#update_original_user").val()
-    let new_username = $("#")
-    if (classname !== "" && username !== "" && grade !== ""){
-        $.ajax({
-            url: "http://127.0.0.1:5000/admin",
-            type: "POST",
-            data: JSON.stringify({"classname" : classname, "username" : username, "grade" : grade, "post" : "enroll"}),
-            contentType: "application/JSON",
-            success: function(response){
-                alert("Successfully Enrolled User in Class!")
-            },
-            error: function(status, error){
-                alert(error)
-            }
+    let new_username = $("#update_new_user").val()
+    let new_name = $("#update_new_name").val()
+    let new_password = $("#update_new_password").val()
+    let new_acct = $("#update_new_type").val()
+    $.ajax({
+        url: "http://127.0.0.1:5000/admin",
+        type: "PUT",
+        data: JSON.stringify({"original_name" : orig_username, "new_userame" : new_username, "new_name" : new_name, "new_password" : new_password, "new_acct" : new_acct}),
+        contentType: "application/JSON",
+        success: function(response){
+            alert("Successfully Editer User!")
+        },
+        error: function(status, error){
+            alert(error)
+        }
         });
-    }
-});
+    });
