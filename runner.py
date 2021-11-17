@@ -119,11 +119,11 @@ def admin():
             course = Courses.query.filter_by(class_name = data["classname"]).first()
             if user is not None and course is not None and user.acct_type == 0:
                 enroll = Enrollment(user.user_id, course.class_id, int(data["grade"]))
+                course.enrolled = course.enrolled + 1
                 db.session.add(enroll)
                 db.session.commit()
                 return "success"
-
-    if request.method == "PUT":
+    elif request.method == "PUT":
         data = request.get_json()
         if data["put"] == "user":
             user = Users.query.filter_by(username = data["original_name"]).first()
@@ -153,8 +153,17 @@ def admin():
                     course.capacity = int(data["new_capacity"])
                 db.session.commit()
                 return "success"
-    else: 
-        return render_template('admin.html')
+    all_courses = []
+    all_grades = []
+    all_users = []
+    allRows = Enrollment.query.all()
+    for row in allRows:
+        user = Users.query.filter_by(user_id = row.users_id).first()
+        course = Courses.query.filter_by(class_id = row.classes_id).first()
+        all_courses.append(course.class_name)
+        all_users.append(user.name)
+        all_grades.append(row.grade)
+    return render_template('admin.html', courses = Courses.query.all(), users = Users.query.all(), enrollCourses = all_courses, enrollUsers = all_users, enrollGrades = all_grades, length = len(all_courses))
 
 # Student
 @app.route("/student")

@@ -182,6 +182,7 @@ $("#admin_newuser").on("click", function(){
             contentType: "application/JSON",
             success: function(response){
                 alert("Successfully Added User!")
+                window.location.href = "http://127.0.0.1:5000/admin"
             },
             error: function(status, error){
                 alert(error)
@@ -205,6 +206,7 @@ $("#admin_newclass").on("click", function(){
             contentType: "application/JSON",
             success: function(response){
                 alert("Successfully Added Class!")
+                window.location.href = "http://127.0.0.1:5000/admin"
             },
             error: function(status, error){
                 alert(error)
@@ -226,6 +228,7 @@ $("#admin_enroll").on("click", function(){
             contentType: "application/JSON",
             success: function(response){
                 alert("Successfully Enrolled User in Class!")
+                window.location.href = "http://127.0.0.1:5000/admin"
             },
             error: function(status, error){
                 alert(error)
@@ -270,6 +273,7 @@ $("#update_user").on("click", function(){
         contentType: "application/JSON",
         success: function(response){
             alert("Successfully Edited User!")
+            window.location.href = "http://127.0.0.1:5000/admin"
         },
         error: function(status, error){
             alert(error)
@@ -292,6 +296,7 @@ $("#update_class").on("click", function(){
         contentType: "application/JSON",
         success: function(response){
             alert("Successfully Edited Class!")
+            window.location.href = "http://127.0.0.1:5000/admin"
         },
         error: function(status, error){
             alert(error)
