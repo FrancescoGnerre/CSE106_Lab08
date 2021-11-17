@@ -206,7 +206,7 @@ def teacher_edit(course_name):
         if user != None:
             course = Courses.query.filter_by(class_name = course_name).first()
             cId = course.class_id
-            enroll = Enrollment.guery.filter_by(users_id = user.user_id, classes_id = cId).first()
+            enroll = Enrollment.query.filter_by(users_id = user.user_id, classes_id = cId).first()
             if enroll != None:
                 enroll.grade = data["grade"]
                 db.session.commit()
