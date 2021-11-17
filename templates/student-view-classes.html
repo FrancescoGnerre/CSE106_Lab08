@@ -17,7 +17,6 @@
                         <th>Time</th>
                         <th>Enrolled</th>
                         <th>Capacity</th>
-						<th>Add/Drop</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,13 +27,6 @@
                         <td>{{course.time}}</td>
                         <td>{{course.enrolled}}</td>
                         <td>{{course.capacity}}</td>
-						{% if course.class_name == "FALSE TEST" %}<!connect join>
-							<td>Already in Class</td>
-						{% elif course.capacity == course.enrolled %}
-							<td>Class is Full</td>
-						{% else %}
-							<td>Can join Class</td>
-						{% endif %}
                     </tr>
                     {% endfor %}</tbody>
             </table><br>

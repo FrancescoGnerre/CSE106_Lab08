@@ -30,14 +30,14 @@
                         <td>{{course.capacity}}</td>
                         {% if course.class_name == "FALSE TEST" %}<!connect join>
 							<td>
-								<button type="button" class="drop_class" id="drop_class">Drop Class</button>
+								<button type="button" class="s_drop_class" id="s_drop_class">Drop Class</button>
 								<script src="/static/script.js"></script>
 							</td>
 						{% elif course.capacity == course.enrolled %}
 							<td>Class is Full</td>
 						{% else %}
 							<td>
-								<button type="button" class="add_class" id="add_class">Add Class</button>
+								<button type="button" class="s_add_class" id="s_add_class">Add Class</button>
 								<script src="/static/script.js"></script>
 							</td>
 						{% endif %}

@@ -70,11 +70,6 @@ class Courses(db.Model):
         self.capacity = capacity
 
 
-adminDebugger = Users(username='ADebug', name="Admin Debugger", password="TRIUMPH",acct_type=2)
-teacherDebugger = Users(username='tDebug', name="Teacher Debugger", password="TEST",acct_type=1)
-studentDebugger = Users(username='sDebug', name="Student Debugger", password="FLUNK",acct_type=0)
-
-
 # Login
 @app.route("/", methods = ["GET", "POST"])
 def login():
@@ -164,15 +159,7 @@ def student_view():
 @app.route("/student/courses")
 @login_required
 def student_edit():
-    listCourses = []
-    enrolled_classes = Enrollment.query.filter_by(users_id = current_user.user_id)
-    for course in enrolled_classes:
-        listCourses.append(course.classes_id)
-    maxcapacity = Courses.query.filter(Courses.enrolled == Courses.capacity)
-    for course in maxcapacity:
-        listCourses.append(course.class_id)
-    classes = Courses.query.filter(Courses.class_id.not_in(listCourses))
-    return render_template('student-edit-classes.html', courses = classes)
+    return render_template('student-edit-classes.html', courses = Courses.query.all())
 
 # Teacher
 @app.route("/teacher")
