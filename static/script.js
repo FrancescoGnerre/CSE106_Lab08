@@ -341,3 +341,40 @@ $("#delete_user_button").on("click", function(){
         }
         });
     });
+
+// When Admin deletes a class
+$("#delete_class_button").on("click", function(){
+    let course = $("#delete_class").val()
+    $.ajax({
+        url: "http://127.0.0.1:5000/admin",
+        type: "DELETE",
+        data: JSON.stringify({"class" : course,  "delete" : "class"}),
+        contentType: "application/JSON",
+        success: function(response){
+            alert("Successfully Deleted Class!")
+            window.location.href = "http://127.0.0.1:5000/admin"
+        },
+        error: function(status, error){
+            alert(error)
+        }
+        });
+    });
+
+// When Admin unenrolls user from a class
+$("#unenroll_user").on("click", function(){
+    let name = $("#delete_enroll_name").val()
+    let course = $("#delete_enroll_class").val()
+    $.ajax({
+        url: "http://127.0.0.1:5000/admin",
+        type: "DELETE",
+        data: JSON.stringify({"class" : course,  "name" : name, "delete" : "unenroll"}),
+        contentType: "application/JSON",
+        success: function(response){
+            alert("Successfully Unenrolled User!")
+            window.location.href = "http://127.0.0.1:5000/admin"
+        },
+        error: function(status, error){
+            alert(error)
+        }
+        });
+    });

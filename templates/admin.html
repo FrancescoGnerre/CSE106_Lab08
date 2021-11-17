@@ -177,12 +177,6 @@
             <input type="number" id="update_grade" name="update_grade" placeholder="Grade"><br>
         </form>
         <button type="button" id = "update_grade_button">Update Grade</button><br>
-
-        <form>
-            <label for="search_class">Class Name:</label><br>
-            <input type="edit_class" id="edit_class" name="edit_class" placeholder="Edit class"><br>
-        </form>
-        <button type="button">Update Class Details</button><br>
         <hr>
         <h1>Delete User</h1><br>
         <form>
@@ -191,14 +185,23 @@
         </form>
         <button type="button" id = "delete_user_button">Delete User</button><br>
         <hr>
+        <h1>Delete Class</h1>
         <form>
-            <label for="purge_class">Class Name:</label><br>
-            <input type="purge_class" id="purge_class" name="purge_class" placeholder="Purge class"><br>
+            <label for="delete_class">Class Name:</label><br>
+            <input type="delete_class" id="delete_class" name="delete_class" placeholder="Class Name"><br>
         </form>
-        <button type="button">Purge Class</button><br>
+        <button type="button" id = "delete_class_button">Delete Class</button><br>
+        <hr>
+        <h1>Unenroll User From Course</h1>
+        <form>
+            <label for="delete_enroll_name">Username:</label><br>
+            <input type="delete_enroll_name" id="delete_enroll_name" name="delete_enroll_name" placeholder="Username"><br>
 
-        <button type="button">Purge All Users</button>
-        <button type="button">Purge All Classes</button>
+            <label for="delete_enroll_class">Class Name:</label><br>
+            <input type="delete_enroll_class" id="delete_enroll_class" name="delete_enroll_class" placeholder="Class Name"><br>
+        </form>
+        <button type="button" id = "unenroll_user">Unenroll User</button><br>
+        <hr>
         <button type="button" id = "logoutAdmin" class = "logout">Log Out</button>
         <script src="../static/script.js"></script>
 

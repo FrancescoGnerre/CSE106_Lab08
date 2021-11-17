@@ -164,28 +164,49 @@ def admin():
 
     elif request.method == "DELETE":
         data = request.get_json()
-        user = Users.query.filter_by(username = data["name"]).first()
-        if user is not None:
-            enroll = Enrollment.query.filter_by(users_id = user.user_id)
-            for row in enroll:
-                courses = Courses.query.filter_by(class_id = row.classes_id)
-                for course in courses:
+        if data["delete"] == "user":
+            user = Users.query.filter_by(username = data["name"]).first()
+            if user is not None:
+                enroll = Enrollment.query.filter_by(users_id = user.user_id)
+                for row in enroll:
+                    courses = Courses.query.filter_by(class_id = row.classes_id)
+                    for course in courses:
+                        course.enrolled = course.enrolled - 1
+                    db.session.delete(row)
+                db.session.delete(user)
+                db.session.commit()
+                return "success"
+        elif data["delete"] == "class":
+            course = Courses.query.filter_by(class_name = data["class"]).first()
+            if course is not None:
+                enroll = Enrollment.query.filter_by(classes_id = course.class_id)
+                for row in enroll:
+                    db.session.delete(row)
+                db.session.delete(course)
+                db.session.commit()
+                return "success"
+        else:
+            user = Users.query.filter_by(username = data["name"]).first()
+            course = Courses.query.filter_by(class_name = data["class"]).first()
+            if user is not None and course is not None:
+                enroll = Enrollment.query.filter_by(classes_id = course.class_id, users_id = user.user_id).first()
+                if enroll is not None:
                     course.enrolled = course.enrolled - 1
-                db.session.delete(row)
-            db.session.delete(user)
-            db.session.commit()
-            return "success"
-    all_courses = []
-    all_grades = []
-    all_users = []
-    allRows = Enrollment.query.all()
-    for row in allRows:
-        user = Users.query.filter_by(user_id = row.users_id).first()
-        course = Courses.query.filter_by(class_id = row.classes_id).first()
-        all_courses.append(course.class_name)
-        all_users.append(user.name)
-        all_grades.append(row.grade)
-    return render_template('admin.html', courses = Courses.query.all(), users = Users.query.all(), enrollCourses = all_courses, enrollUsers = all_users, enrollGrades = all_grades, length = len(all_courses))
+                    db.session.delete(enroll)
+                    db.session.commit()
+                    return "success"
+    elif request.method == "GET":
+        all_courses = []
+        all_grades = []
+        all_users = []
+        allRows = Enrollment.query.all()
+        for row in allRows:
+            user = Users.query.filter_by(user_id = row.users_id).first()
+            course = Courses.query.filter_by(class_id = row.classes_id).first()
+            all_courses.append(course.class_name)
+            all_users.append(user.name)
+            all_grades.append(row.grade)
+        return render_template('admin.html', courses = Courses.query.all(), users = Users.query.all(), enrollCourses = all_courses, enrollUsers = all_users, enrollGrades = all_grades, length = len(all_courses))
 
 # Student
 @app.route("/student")
