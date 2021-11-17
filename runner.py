@@ -174,6 +174,7 @@ def teacher_edit(course_name):
     # More functionality needs to be added here...
     listStudentIds = []
     listStudentNames = []
+
     grades = []
     # Acquire Course
     course_details = Courses.query.filter_by(class_name = course_name).first()
@@ -188,13 +189,12 @@ def teacher_edit(course_name):
     for enrolled in listEnrolled:
         listStudentIds.append(enrolled.users_id)
     # Acquire Student users
-    for student in listStudentIds:
-        enrolled_users =  Users.query.filter_by(user_id = student)
+    enrolled_users =  Users.query.filter(Users.user_id.in_(listStudentIds))
     # Acquire Student name
     for names in enrolled_users:
         listStudentNames.append(names.name)
-
-    return render_template('teacher-view-class-details.html', name = course_name, students = listStudentIds, grades = grades)
+    length = len(listStudentIds)
+    return render_template('teacher-view-class-details.html', name = course_name, students = listStudentNames, grades = grades, length = length)
 
 # Run
 if __name__ == "__main__":
