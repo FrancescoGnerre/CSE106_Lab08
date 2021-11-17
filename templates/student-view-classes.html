@@ -17,6 +17,7 @@
                         <th>Time</th>
                         <th>Enrolled</th>
                         <th>Capacity</th>
+						<th>Add/Drop</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,6 +28,13 @@
                         <td>{{course.time}}</td>
                         <td>{{course.enrolled}}</td>
                         <td>{{course.capacity}}</td>
+						{% if course.class_name == "FALSE TEST" %}<!connect join>
+							<td>Drop course</td><!add link>
+						{% elif course.capacity == course.enrolled %}
+							<td>Course is Full</td><!add link>
+						{% else %}
+							<td>Add course</td><!add link>
+						{% endif %}
                     </tr>
                     {% endfor %}</tbody>
             </table><br>
