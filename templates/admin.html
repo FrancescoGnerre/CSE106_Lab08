@@ -8,7 +8,6 @@
     <body>
 
     <div class="admin">
-
         <h1>Create New User</h1>
         <form>
             <label for="user_name">Username:</label><br>
@@ -58,13 +57,26 @@
         </form>
         <button type="button" id = "admin_enroll">Enroll Student in Class</button><br>
         <hr>
-        Read<br>
+        <h1>Update User</h1>
         <form>
-            <label for="search_user">USERNAME:</label><br>
-            <input type="search_user" id="search_user" name="search_user" placeholder="Search user"><br>
-        </form>
-        <button type="button">View User Details</button><br>
+            <label for="update_original_user">Original Username:</label><br>
+            <input type="text" id="update_original_user" name="update_original_user" placeholder="Original Username"><br>
 
+            <label for="update_new_user">New Username:</label><br>
+            <input type="text" id="update_new_user" name="update_new_user" placeholder="New Username"><br>
+
+            <label for="update_new_name">New Name:</label><br>
+            <input type="text" id="update_new_name" name="update_new_name" placeholder="New Name"><br>
+
+            <label for="update_new_password">New Password:</label><br>
+            <input type="text" id="update_new_password" name="update_new_password" placeholder="New Password"><br>
+
+            <label for="update_new_type">New Account Type:</label><br>
+            <input type="number" id="update_new_type" name="update_new_type" placeholder="Account Type"><br>
+
+        </form>
+        <button type="button" id = "update_user">Update User</button><br>
+        <hr>
         <form>
             <label for="search_class">Class Name:</label><br>
             <input type="search_class" id="search_class" name="search_class" placeholder="Search class"><br>

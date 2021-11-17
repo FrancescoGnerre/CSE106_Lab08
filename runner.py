@@ -122,8 +122,32 @@ def admin():
                 db.session.add(enroll)
                 db.session.commit()
                 return "success"
+
+        if request.method == "PUT":
+            data = request.get_json()
+            user = Users.query.filter_by(username = data["original_name"]).first()
     else: 
         return render_template('admin.html')
+
+@app.route('/admin/C', methods =['GET', 'POST'])
+@login_required
+def admin_create():
+    return 0
+
+@app.route('/admin/R', methods =['GET'])
+@login_required
+def admin_read():
+    return 0
+
+@app.route('/admin/U', methods =['GET', 'PUT'])
+@login_required
+def admin_update():
+    return 0
+
+@app.route('/admin/D', methods =['DELETE'])
+@login_required
+def admin_delete():
+    return 0
 
 # Student
 @app.route("/student")
