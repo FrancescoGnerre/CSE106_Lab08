@@ -125,26 +125,6 @@ def admin():
     else: 
         return render_template('admin.html')
 
-@app.route('/admin/C', methods =['GET', 'POST'])
-@login_required
-def admin_create():
-    return 0
-
-@app.route('/admin/R', methods =['GET'])
-@login_required
-def admin_read():
-    return 0
-
-@app.route('/admin/U', methods =['GET', 'PUT'])
-@login_required
-def admin_update():
-    return 0
-
-@app.route('/admin/D', methods =['DELETE'])
-@login_required
-def admin_delete():
-    return 0
-
 # Student
 @app.route("/student")
 @login_required
