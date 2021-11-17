@@ -27,14 +27,6 @@
     margin: auto;
 }
 
-.login button {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    margin: auto;
-    justify-content: center;
-}
-
 .logout {
     height: 20px;
     width: 100px;
