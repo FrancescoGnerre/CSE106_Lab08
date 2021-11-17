@@ -203,3 +203,23 @@ $("#admin_enroll").on("click", function(){
         });
     }
 });
+
+// When Admin edits a user
+$("#update_user").on("click", function(){
+    let orig_username = $("#update_original_user").val()
+    let new_username = $("#")
+    if (classname !== "" && username !== "" && grade !== ""){
+        $.ajax({
+            url: "http://127.0.0.1:5000/admin",
+            type: "POST",
+            data: JSON.stringify({"classname" : classname, "username" : username, "grade" : grade, "post" : "enroll"}),
+            contentType: "application/JSON",
+            success: function(response){
+                alert("Successfully Enrolled User in Class!")
+            },
+            error: function(status, error){
+                alert(error)
+            }
+        });
+    }
+});
