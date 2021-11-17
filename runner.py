@@ -168,9 +168,10 @@ def teacher_view():
     taught_classes = Courses.query.filter_by(teacher = current_user.name)
     return render_template('teacher-view-classes.html', courses = taught_classes)
 
-@app.route("/teacher/<course_name>")
+@app.route("/teacher/<course_name>", methods=['GET', 'PUT'])
 @login_required
 def teacher_edit(course_name):
+
     # More functionality needs to be added here...
     listStudentIds = []
     listStudentNames = []
@@ -181,7 +182,7 @@ def teacher_edit(course_name):
     # Acquire class id
     classId = course_details.class_id
     # Acquire all enrolled in class id
-    listEnrolled = Enrollment.query.filter_by(classes_id = classId)
+    listEnrolled = Enrollment.query.filter_by(classes_id = classId).order_by(Enrollment.users_id)
     # Acquire grades
     for user in listEnrolled:
         grades.append(user.grade)
@@ -194,6 +195,18 @@ def teacher_edit(course_name):
     for names in enrolled_users:
         listStudentNames.append(names.name)
     length = len(listStudentIds)
+
+    if request.method == "PUT":
+        data = request.get_json()
+        user = Users.query.filter_by(name = data["name"]).first()
+        if user != None:
+            course = Courses.query.filter_by(class_name = course_name).first()
+            cId = course.class_id
+            enroll = Enrollment.guery.filter_by(users_id = user.user_id, classes_id = cId).first()
+            if enroll != None:
+                enroll.grade = data["grade"]
+                db.session.commit()
+
     return render_template('teacher-view-class-details.html', name = course_name, students = listStudentNames, grades = grades, length = length)
 
 # Run
