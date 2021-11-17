@@ -204,11 +204,11 @@ $("#admin_enroll").on("click", function(){
     }
 });
 
+// Teacher editing grades
 $("#grade_change").on("click", function(){
     let grade = $("#edit_grade").val()
     let student = $("#student_name").val()
     let course_name = document.getElementById("course_name").innerHTML
-    console.log(course_name)
     if (student !== "" && grade !== ""){
         $.ajax({
             url: "http://127.0.0.1:5000/teacher/" + course_name,
@@ -217,6 +217,7 @@ $("#grade_change").on("click", function(){
             contentType: "application/JSON",
             success: function(response){
                 alert("Successfully Changed Student Grade!")
+                window.location.href = "http://127.0.0.1:5000/teacher/" + course_name
             },
             error: function(status, error){
                 alert(error)
