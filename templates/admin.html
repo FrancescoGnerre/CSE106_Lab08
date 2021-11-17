@@ -9,26 +9,30 @@
 
     <div class="admin">
 
-        Create<br>
+        <h1>Create New User</h1>
         <form>
-            <label for="user_name">USERNAME:</label><br>
+            <label for="user_name">Username:</label><br>
             <input type="text" id="user_name" name="user_name" placeholder="Username"><br>
 
-            <label for="password">PASSWORD:</label><br>
-            <input type="password" id="password" name="password" placeholder="Password"><br>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" placeholder="Name"><br>
 
+            <label for="password">Password:</label><br>
+            <input type="text" id="password" name="password" placeholder="Password"><br>
+
+            <label for="acct_type">Account Type:</label><br>
+            <p>0-Student 1-Teacher 2-Admin</p>
+            <input type="text" id="acct_type" name="acct_type" placeholder="Account Type"><br>
         </form>
-        <button type="button">Upload New User</button><br>
-
+        <button type="button" id = "admin_newuser">Upload New User</button><br>
+        <hr>
+        <h1>Create New Class</h1>
         <form>
             <label for="class_name">Class:</label><br>
             <input type="text" id="class_name" name="class_name" placeholder="Class name"><br>
 
-            <label for="start_time">Start time:</label><br>
-            <input type="start_time" id="start_time" name="start_time" placeholder="Start time"><br>
-
-            <label for="end_time">End time:</label><br>
-            <input type="end_time" id="end_time" name="end_time" placeholder="End time"><br>
+            <label for="time">Time:</label><br>
+            <input type="text" id="time" name="time" placeholder="Time"><br>
 
             <label for="capacity">Capacity:</label><br>
             <input type="capacity" id="capacity" name="capacity" placeholder="Capactiy"><br>
@@ -38,10 +42,19 @@
 
             <label for="teacher">Teacher:</label><br>
             <input type="teacher" id="teacher" name="teacher" placeholder="Teacher"><br>
-
         </form>
-        <button type="button">Upload New Class</button><br>
+        <button type="button" id = "admin_newclass">Upload New Class</button><br>
+        <hr>
+        <h1>Enroll Student in Class</h1>
+        <form>
+            <label for="enroll_username">Username:</label><br>
+            <input type="text" id="enroll_user_name" name="enroll_user_name" placeholder="Username"><br>
 
+            <label for="enroll_classname">Class:</label><br>
+            <input type="text" id="enroll_classname" name="enroll_classname" placeholder="Class"><br>
+        </form>
+        <button type="button" id = "admin_enroll">Enroll Student in Class</button><br>
+        <hr>
         Read<br>
         <form>
             <label for="search_user">USERNAME:</label><br>
@@ -54,7 +67,7 @@
             <input type="search_class" id="search_class" name="search_class" placeholder="Search class"><br>
         </form>
         <button type="button">View Class Details</button><br>
-
+        <hr>
         Update<br>
         <form>
             <label for="edit_user">USERNAME:</label><br>
@@ -67,7 +80,7 @@
             <input type="edit_class" id="edit_class" name="edit_class" placeholder="Edit class"><br>
         </form>
         <button type="button">Update Class Details</button><br>
-
+        <hr>
         Delete<br>
         <form>
             <label for="purge_user">USERNAME:</label><br>
@@ -85,6 +98,7 @@
         <button type="button">Purge All Classes</button>
         <button type="button" id = "logoutAdmin" class = "logout">Log Out</button>
         <script src="static/script.js"></script>
+
     </div>
     </body>
 </html>
