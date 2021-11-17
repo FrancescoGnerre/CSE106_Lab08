@@ -38,14 +38,16 @@
 						{% else %}
 							<td>
 								<button type="button" class="s_add_class" id="s_add_class" onclick="s_add_class_func()">Add Class</button>
-								<p id="desired_class">{{course.class_name}}</p>
+								<p>{{course.class_name}}</p>
 							</td>
 						{% endif %}	
-						</tr>
+					</tr>
 				{% endfor %}
 				</tbody>
             </table><br>
 			
+			<input type="text" id="adding_class" name="Class to Add">
+			<button type="button" class = "s_add_classes" id = "s_add_classes">Add Class</button><br>
 			<button type="button" class = "s_view_classes" id = "s_view_classes">Return to View Classes</button><br>
             <button type="button" class = "logout" id = "logoutStudentEdit">Log Out</button>
 		</div>

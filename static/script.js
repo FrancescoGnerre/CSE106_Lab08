@@ -33,10 +33,26 @@ $("#s_edit_classes").on("click", function(){
 	})
 });
 
+
+$("#s_add_classes").on("click", function(){
+	const val = $("#adding_class").val()
+	$.ajax({
+		url: "http://127.0.0.1:5000/student/courses", 
+		type: "POST",
+		data: JSON.stringify({"class_name": val}),
+		contentType: "application/JSON",
+		success: function(){
+            window.location.href="http://127.0.0.1:5000/student/courses"
+        }, 
+        error: function(status, error){
+            alert(error)
+        }
+	})
+});
+
 function s_add_class_func(){
-	var target_class = document.getElementById("desired_class").innerHTML;
-	consolePrint(target_class)
-	alert(target_class)
+	alert("Please insert this class to add in the text box")
+	
 }
 
 function s_drop_class_func(){
