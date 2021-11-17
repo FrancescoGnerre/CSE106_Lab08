@@ -48,7 +48,7 @@ input {
 
 .admin {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-position: center;
     align-items: center;
     text-align: center;
@@ -59,30 +59,43 @@ input {
     background-position: center;
     background-color: deepskyblue;
     width: 100%;
-    height: 90vh;
-	padding: 50px;
+    height: 100vh;
 }
 
 .student_view {
     background-position: center;
     background-color: deepskyblue;
     width: 100%;
-    height: 90vh;
-	padding: 50px;
+    height: 100vh;
 }
 
 .teacher_view_class_details {
     background-position: center;
     background-color: deepskyblue;
     width: 100%;
-    height: 90vh;
-	padding: 50px;
+    height: 100vh;
 }
 
 .teacher_view_classes {
     background-position: center;
     background-color: deepskyblue;
     width: 100%;
-    height: 90vh;
+    height: 100vh;
 	padding: 50px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 15px;
+    text-align: center;
+    color: black;
+    background-color:white;
+}
+
+th {
+    background-color:lightskyblue;
+    color:white;
 }

@@ -168,11 +168,33 @@ def teacher_view():
     taught_classes = Courses.query.filter_by(teacher = current_user.name)
     return render_template('teacher-view-classes.html', courses = taught_classes)
 
-@app.route("/teacher/<class_name>")
+@app.route("/teacher/<course_name>")
 @login_required
-def teacher_edit(class_name):
+def teacher_edit(course_name):
     # More functionality needs to be added here...
-    return class_name
+    listStudentIds = []
+    listStudentNames = []
+
+    grades = []
+    # Acquire Course
+    course_details = Courses.query.filter_by(class_name = course_name).first()
+    # Acquire class id
+    classId = course_details.class_id
+    # Acquire all enrolled in class id
+    listEnrolled = Enrollment.query.filter_by(classes_id = classId)
+    # Acquire grades
+    for user in listEnrolled:
+        grades.append(user.grade)
+    # Acquire Student Ids
+    for enrolled in listEnrolled:
+        listStudentIds.append(enrolled.users_id)
+    # Acquire Student users
+    enrolled_users =  Users.query.filter(Users.user_id.in_(listStudentIds))
+    # Acquire Student name
+    for names in enrolled_users:
+        listStudentNames.append(names.name)
+    length = len(listStudentIds)
+    return render_template('teacher-view-class-details.html', name = course_name, students = listStudentNames, grades = grades, length = length)
 
 # Run
 if __name__ == "__main__":
