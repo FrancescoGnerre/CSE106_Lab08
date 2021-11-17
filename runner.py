@@ -140,6 +140,19 @@ def admin():
                 return "success"
         elif data["put"] == "class":
             course = Courses.query.filter_by(class_name = data["original_class"]).first()
+            if course is not None:
+                if data["new_class"] != "":
+                    course.class_name = data["new_class"]
+                if data["new_teacher"] != "":
+                    course.teacher = data["new_teacher"]
+                if data["new_time"] != "":
+                    course.time = data["new_time"]
+                if data["new_enrolled"] != "":
+                    course.enrolled = int(data["new_enrolled"])
+                if data["new_capacity"] != "":
+                    course.capacity = int(data["new_capacity"])
+                db.session.commit()
+                return "success"
     else: 
         return render_template('admin.html')
 

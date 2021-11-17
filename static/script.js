@@ -253,7 +253,29 @@ $("#update_user").on("click", function(){
         data: JSON.stringify({"original_name" : orig_username, "new_username" : new_username, "new_name" : new_name, "new_password" : new_password, "new_acct" : new_acct, "put" : "user"}),
         contentType: "application/JSON",
         success: function(response){
-            alert("Successfully Editer User!")
+            alert("Successfully Edited User!")
+        },
+        error: function(status, error){
+            alert(error)
+        }
+        });
+    });
+
+// When Admin edits a class
+$("#update_class").on("click", function(){
+    let orig_class = $("#original_class_name").val()
+    let new_class = $("#new_class_name").val()
+    let new_teacher = $("#new_teacher").val()
+    let new_time = $("#new_time").val()
+    let new_enrolled = $("#new_enrolled").val()
+    let new_capacity = $("#new_capacity").val()
+    $.ajax({
+        url: "http://127.0.0.1:5000/admin",
+        type: "PUT",
+        data: JSON.stringify({"original_class" : orig_class, "new_class" : new_class, "new_teacher" : new_teacher, "new_time" : new_time, "new_enrolled" : new_enrolled, "new_capacity" : new_capacity, "put" : "class"}),
+        contentType: "application/JSON",
+        success: function(response){
+            alert("Successfully Edited Class!")
         },
         error: function(status, error){
             alert(error)
