@@ -246,7 +246,7 @@ $("#update_user").on("click", function(){
     $.ajax({
         url: "http://127.0.0.1:5000/admin",
         type: "PUT",
-        data: JSON.stringify({"original_name" : orig_username, "new_userame" : new_username, "new_name" : new_name, "new_password" : new_password, "new_acct" : new_acct}),
+        data: JSON.stringify({"original_name" : orig_username, "new_username" : new_username, "new_name" : new_name, "new_password" : new_password, "new_acct" : new_acct, "put" : "user"}),
         contentType: "application/JSON",
         success: function(response){
             alert("Successfully Editer User!")

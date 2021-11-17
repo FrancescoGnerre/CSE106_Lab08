@@ -95,7 +95,7 @@ def logout():
     return url_for('login')[1:]
 
 # Admin
-@app.route('/admin', methods = ["GET", "POST"])
+@app.route('/admin', methods = ["GET", "POST", "PUT", "DELETE"])
 @login_required
 def admin():
     if request.method == "POST":
@@ -123,31 +123,25 @@ def admin():
                 db.session.commit()
                 return "success"
 
-        if request.method == "PUT":
-            data = request.get_json()
+    if request.method == "PUT":
+        data = request.get_json()
+        if data["put"] == "user":
             user = Users.query.filter_by(username = data["original_name"]).first()
+            if user is not None:
+                if data["new_username"] != "":
+                    user.username = data["new_username"]
+                if data["new_name"] != "":
+                    user.name = data["new_name"]
+                if data["new_password"] != "":
+                    user.password = data["new_password"]
+                if data["new_acct"] != "":
+                    user.acct_type = int(data["new_acct"])
+                db.session.commit()
+                return "success"
+        elif data["put"] == "class":
+            course = Courses.query.filter_by(class_name = data["original_class"]).first()
     else: 
         return render_template('admin.html')
-
-@app.route('/admin/C', methods =['GET', 'POST'])
-@login_required
-def admin_create():
-    return 0
-
-@app.route('/admin/R', methods =['GET'])
-@login_required
-def admin_read():
-    return 0
-
-@app.route('/admin/U', methods =['GET', 'PUT'])
-@login_required
-def admin_update():
-    return 0
-
-@app.route('/admin/D', methods =['DELETE'])
-@login_required
-def admin_delete():
-    return 0
 
 # Student
 @app.route("/student")
