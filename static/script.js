@@ -33,6 +33,16 @@ $("#s_edit_classes").on("click", function(){
 	})
 });
 
+function s_add_class_func(){
+	var target_class = document.getElementById("desired_class").innerHTML;
+	consolePrint(target_class)
+	alert(target_class)
+}
+
+function s_drop_class_func(){
+	alert("Access Denied")
+}
+
 // student edit back to view
 $("#s_view_classes").on("click", function(){
 	consolePrint("TEST")
