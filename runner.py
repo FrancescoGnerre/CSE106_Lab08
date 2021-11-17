@@ -70,11 +70,6 @@ class Courses(db.Model):
         self.capacity = capacity
 
 
-adminDebugger = Users(username='ADebug', name="Admin Debugger", password="TRIUMPH",acct_type=2)
-teacherDebugger = Users(username='tDebug', name="Teacher Debugger", password="TEST",acct_type=1)
-studentDebugger = Users(username='sDebug', name="Student Debugger", password="FLUNK",acct_type=0)
-
-
 # Login
 @app.route("/", methods = ["GET", "POST"])
 def login():
